@@ -36,7 +36,7 @@ public class Accountant implements Runnable
         e.printStackTrace();
       }
 
-      door.acquireReadAccess();
+      lock = door.acquireReadAccess();
 
       //Counting the valuables
       ArrayList<String> valuables = lock.getTreasure();
@@ -44,12 +44,12 @@ public class Accountant implements Runnable
       Map<String, Integer> counts = new HashMap<>();
 
       for(String valuable : valuables){
-        totalValue += PRICES.get(valuable.toString());
-        if(!counts.containsKey(valuable.toString())){
-          counts.put(valuable.toString(), 1);
+        totalValue += PRICES.get(valuable);
+        if(!counts.containsKey(valuable)){
+          counts.put(valuable, 1);
         }
         else{
-          counts.replace(valuable.toString(), counts.get(valuable.toString()) + 1);
+          counts.replace(valuable, counts.get(valuable) + 1);
         }
       }
 
@@ -66,6 +66,7 @@ public class Accountant implements Runnable
         e.printStackTrace();
       }
 
+      lock = null;
       door.releaseReadAccess();
     }
   }
