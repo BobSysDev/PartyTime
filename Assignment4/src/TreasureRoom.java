@@ -1,9 +1,10 @@
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TreasureRoom implements WriteTreasure, ReadTreasure{
 
-    private List<Valuable> valuables;
+    private ArrayList<Valuable> valuables;
 
     public TreasureRoom() {
         this.valuables = new ArrayList<>();
