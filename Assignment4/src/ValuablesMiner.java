@@ -12,7 +12,7 @@ public class ValuablesMiner implements Runnable
   {
     while(true)
     {
-      log.log(Thread.currentThread().getName() + " is mining...");
+      //log.log(Thread.currentThread().getName() + " is mining...");
       try
       {
         Thread.sleep(5000);
@@ -23,8 +23,7 @@ public class ValuablesMiner implements Runnable
       }
       String valuable = mine.mine();
       log.log(Thread.currentThread().getName() + " mined " + valuable + "!");
-      log.log(Thread.currentThread().getName() + " is depositing " + valuable
-          + "...");
+      //log.log(Thread.currentThread().getName() + " is depositing " + valuable + "...");
       try
       {
         Thread.sleep(1000);

@@ -51,6 +51,7 @@ public class Mine
         v = Valuables.getInstance("Redstone").getName();
         break;
     }
+    notifyAll();
     return v;
   }
 }

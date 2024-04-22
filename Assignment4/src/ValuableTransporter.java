@@ -17,56 +17,42 @@ public class ValuableTransporter implements Runnable
 
   @Override public void run()
   {
-    while (true)
-    {
-      while (lock.size() >= 3)
-      {
-        for (int i = 0; i < 3; i++)
-        {
-          try
-          {
-            Thread.sleep(300);
-          }
-          catch (InterruptedException e)
-          {
-            throw new RuntimeException(e);
-          }
-          String v = lock.take();
-          valuables.add(v);
-          log.log(Thread.currentThread().getName() + " is taking " + v);
-
-        }
-
-        WriteTreasure treasure = door.acquireWriteAccess();
-        for (int i = 0; i < 3; i++)
-        {
-          try
-          {
-            Thread.sleep(2000);
-          }
-          catch (InterruptedException e)
-          {
-            throw new RuntimeException(e);
-          }
-          treasure.addTreasure(valuables.remove(i));
-          log.log(Thread.currentThread().getName() + " delivered treasure ");
-        }
-
+    while(true){
+      try{
+        log.log(Thread.currentThread().getName()+" is taking from deposit.");
+        valuables.addAll(lock.take());
+        log.log(Thread.currentThread().getName()+" took from deposit.");
       }
+      catch (Exception e)
+      {
+        throw new RuntimeException(e);
+      }
+
+      try
+      {
+        Thread.sleep(1500);
+      }
+      catch (InterruptedException e)
+      {
+        throw new RuntimeException(e);
+      }
+
+      try{
+        log.log(Thread.currentThread().getName()+" is putting to treasure.");
+        WriteTreasure writeTreasure = door.acquireWriteAccess();
+        writeTreasure.addTreasure(valuables);
+        door.releaseWriteAccess();
+        log.log(Thread.currentThread().getName()+" put to treasure.");
+      }
+      catch (Exception e)
+      {
+        throw new RuntimeException(e);
+      }
+
     }
 
   }
 
-  private void spendSomeTime(String what)
-  {
-    try
-    {
-      Thread.sleep(500);
-    }
-    catch (InterruptedException e)
-    {
-      // ...
-    }
-  }
+
 
 }

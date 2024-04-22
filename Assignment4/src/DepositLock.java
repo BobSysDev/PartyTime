@@ -1,5 +1,7 @@
+import java.util.ArrayList;
+
 public interface DepositLock {
     void put(String valuable);
-    String take();
+    ArrayList<String> take();
     int size();
 }
