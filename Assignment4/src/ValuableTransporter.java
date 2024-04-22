@@ -19,9 +19,8 @@ public class ValuableTransporter implements Runnable
   {
     while(true){
       try{
-        log.log(Thread.currentThread().getName()+" is taking from deposit.");
         valuables.addAll(lock.take());
-        log.log(Thread.currentThread().getName()+" took from deposit.");
+        log.log(Thread.currentThread().getName()+" took stuff from deposit.");
       }
       catch (Exception e)
       {
@@ -38,11 +37,10 @@ public class ValuableTransporter implements Runnable
       }
 
       try{
-        log.log(Thread.currentThread().getName()+" is putting to treasure.");
         WriteTreasure writeTreasure = door.acquireWriteAccess();
         writeTreasure.addTreasure(valuables);
         door.releaseWriteAccess();
-        log.log(Thread.currentThread().getName()+" put to treasure.");
+        log.log(Thread.currentThread().getName()+" put stuff into treasure.");
       }
       catch (Exception e)
       {

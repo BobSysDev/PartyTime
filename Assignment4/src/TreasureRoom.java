@@ -24,8 +24,8 @@ public class TreasureRoom implements WriteTreasure, ReadTreasure{
     }
 
     public synchronized ArrayList<String> removeTreasure(){
-        ArrayList<String> removed = new ArrayList<>(valuables);
-        valuables.clear();
-        return removed;
+        final ArrayList<String> ret = valuables;
+        valuables = new ArrayList<>();
+        return ret;
     }
 }

@@ -29,6 +29,9 @@ public class Accountant implements Runnable
   }
 
   @Override public void run(){
+    Map<String, Integer> counts = new HashMap<>();
+    int totalValue = 0;
+
     while(true){
       try{
         Thread.sleep(4000);
@@ -40,8 +43,8 @@ public class Accountant implements Runnable
 
       //Counting the valuables
       ArrayList<String> valuables = lock.getTreasure();
-      int totalValue = 0;
-      Map<String, Integer> counts = new HashMap<>();
+      totalValue = 0;
+      counts.clear();
 
       for(String valuable : valuables){
         totalValue += PRICES.get(valuable);

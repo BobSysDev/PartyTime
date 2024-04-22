@@ -20,7 +20,7 @@ public class King implements Runnable
   {
     while(true){
       try{
-        Thread.sleep(2000);
+        Thread.sleep(8000);
       }catch(InterruptedException e){
         e.printStackTrace();
       }
@@ -35,26 +35,35 @@ public class King implements Runnable
         totalValue += Accountant.PRICES.get(valuable);
       }
 
-      if(totalValue <= PARTY_PRICE){
+      if(totalValue < PARTY_PRICE){
         lock.addTreasure(valuables);
-        System.out.println("Not enough moneyz... (｡•́︿•̀｡)");
+        System.out.println("Not enough moneyz... (｡•́︿•̀｡) ["+ totalValue +"/" + PARTY_PRICE + "]");
       }
-      else{
+      else
+      {
         int valueGathered = 0;
         int initialValuablesSize = valuables.size();
-        for(int i = 0; i<initialValuablesSize; i++){
+
+        for (int i = 0; i < initialValuablesSize; i++)
+        {
           valueGathered += Accountant.PRICES.get(valuables.remove(0));
-          if(valueGathered >= PARTY_PRICE){
+          if (valueGathered >= PARTY_PRICE)
+          {
             break;
           }
         }
-        logger.log("PARTY TIME!!! ( ﾉ･o･ )ﾉ");
-      }
 
-      try{
-        Thread.sleep(10000);
-      }catch(InterruptedException e){
-        e.printStackTrace();
+        logger.log("PARTY TIME!!! ( ﾉ･o･ )ﾉ");
+        lock.addTreasure(valuables);
+
+        try
+        {
+          Thread.sleep(10000);
+        }
+        catch (InterruptedException e)
+        {
+          e.printStackTrace();
+        }
       }
 
       door.releaseWriteAccess();
