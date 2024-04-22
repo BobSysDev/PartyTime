@@ -12,7 +12,6 @@ public class ValuablesMiner implements Runnable
   {
     while(true)
     {
-      //log.log(Thread.currentThread().getName() + " is mining...");
       try
       {
         Thread.sleep(5000);
@@ -22,8 +21,7 @@ public class ValuablesMiner implements Runnable
         throw new RuntimeException(e);
       }
       String valuable = mine.mine();
-      log.log(Thread.currentThread().getName() + " mined " + valuable + "!");
-      //log.log(Thread.currentThread().getName() + " is depositing " + valuable + "...");
+      log.updateMiner(Integer.parseInt(Thread.currentThread().getName().split(" ")[1])," mined " + valuable + "!");
       try
       {
         Thread.sleep(1000);
@@ -33,8 +31,8 @@ public class ValuablesMiner implements Runnable
         throw new RuntimeException(e);
       }
       lock.put(valuable);
-      log.log(
-          Thread.currentThread().getName() + " deposited " + valuable + ".");
+      log.updateMiner(Integer.parseInt(Thread.currentThread().getName().split(" ")[1]),
+          " deposited " + valuable + ".");
     }
   }
 }

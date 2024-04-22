@@ -34,7 +34,7 @@ public class Accountant implements Runnable
 
     while(true){
       try{
-        Thread.sleep(4000);
+        Thread.sleep(1000);
       }catch(InterruptedException e){
         e.printStackTrace();
       }
@@ -56,15 +56,14 @@ public class Accountant implements Runnable
         }
       }
 
-      StringBuilder toReturn = new StringBuilder(
-          "Accountant has finished counting the valuables in the vault. The result: ");
+      StringBuilder toReturn = new StringBuilder();
       counts.forEach((name, value) -> {
-        toReturn.append("\n").append(name).append(" : ").append(value);});
-      toReturn.append("\nTotal value of all valuables: ").append(totalValue);
-      logger.log(toReturn.toString());
+        toReturn.append(name).append(" : ").append(value).append("\n");});
+      toReturn.append("Total value of all valuables: ").append(totalValue);
+      logger.updateAccountantData(toReturn.toString());
 
       try{
-        Thread.sleep(1000);
+        Thread.sleep(500);
       }catch(InterruptedException e){
         e.printStackTrace();
       }

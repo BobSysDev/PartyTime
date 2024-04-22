@@ -20,7 +20,7 @@ public class ValuableTransporter implements Runnable
     while(true){
       try{
         valuables.addAll(lock.take());
-        log.log(Thread.currentThread().getName()+" took stuff from deposit.");
+        log.updateTransporter("took stuff from deposit.");
       }
       catch (Exception e)
       {
@@ -40,7 +40,7 @@ public class ValuableTransporter implements Runnable
         WriteTreasure writeTreasure = door.acquireWriteAccess();
         writeTreasure.addTreasure(valuables);
         door.releaseWriteAccess();
-        log.log(Thread.currentThread().getName()+" put stuff into treasure.");
+        log.updateTransporter("put stuff into treasure.");
       }
       catch (Exception e)
       {
