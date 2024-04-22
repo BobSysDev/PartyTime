@@ -7,6 +7,6 @@ public interface Door {
 
     void putTreasure(Treasure treasure);
     Treasure getTreasure();
-    void toAccount();
+    String toAccount();
 
 }
