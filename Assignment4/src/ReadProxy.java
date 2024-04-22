@@ -1,2 +1,5 @@
-public class ReadProxy {
+public class ReadProxy implements ReadTreasure, WriteTreasure{
+
+
+
 }
