@@ -30,8 +30,9 @@ public class ValuableTransporter implements Runnable
 
                 }
 
+                WriteTreasure treasure = door.acquireWrite();
                 for (int i = 0; i < 3; i++) {
-                    lock.put(valuables.remove(i));
+                    treasure.
                 }
 
             }
