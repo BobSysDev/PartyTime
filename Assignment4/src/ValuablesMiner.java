@@ -10,16 +10,32 @@ public class ValuablesMiner implements Runnable
   }
   @Override public void run()
   {
-    log.log(Thread.currentThread().getName()+" is mining...");
-    try {Thread.sleep(5000);}
-    catch (InterruptedException e) {throw new RuntimeException(e);}
-    String valuable = mine.mine();
-    log.log(Thread.currentThread().getName()+" mined "+valuable+"!");
-    log.log(Thread.currentThread().getName()+" is depositing "+valuable+"...");
-    try {Thread.sleep(1000);}
-    catch (InterruptedException e) {throw new RuntimeException(e);}
-    lock.put(valuable);
-    log.log(Thread.currentThread().getName()+" deposited "+valuable+".");
-    notifyAll();
+    while(true)
+    {
+      log.log(Thread.currentThread().getName() + " is mining...");
+      try
+      {
+        Thread.sleep(5000);
+      }
+      catch (InterruptedException e)
+      {
+        throw new RuntimeException(e);
+      }
+      String valuable = mine.mine();
+      log.log(Thread.currentThread().getName() + " mined " + valuable + "!");
+      log.log(Thread.currentThread().getName() + " is depositing " + valuable
+          + "...");
+      try
+      {
+        Thread.sleep(1000);
+      }
+      catch (InterruptedException e)
+      {
+        throw new RuntimeException(e);
+      }
+      lock.put(valuable);
+      log.log(
+          Thread.currentThread().getName() + " deposited " + valuable + ".");
+    }
   }
 }

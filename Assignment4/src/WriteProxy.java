@@ -35,4 +35,11 @@ public class WriteProxy implements WriteTreasure {
         }
         throw new IllegalStateException("Access is denied after release has been called");
     }
+
+    @Override public ArrayList<String> removeTreasure(){
+        if (guardsman.hasAccess(Thread.currentThread())) {
+            return this.treasureRoom.removeTreasure();
+        }
+        throw new IllegalStateException("Access is denied after release has been called");
+    }
 }
