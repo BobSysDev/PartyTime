@@ -1,25 +1,39 @@
-    public class ValuableTransporter implements Runnable
+import java.util.ArrayList;
+import java.util.logging.Logger;
+
+public class ValuableTransporter implements Runnable
     {
         private DepositLock lock;
         private Door door;
+        private ArrayList<String> valuables;
+        private Logger log;
 
-        public ValuableTransporter(DepositLock lock)
+        public ValuableTransporter(DepositLock lock, Door door)
         {
             this.lock = lock;
+            this.door = door;
+            this.valuables = new ArrayList<>();
+            this.log = Logger.getInstance();
         }
 
         @Override
         public void run()
         {
-            while (true)
+            while (lock.size()>=3)
             {
-                lock.take();
-                System.out.println(
-                        Thread.currentThread().getName() + " taking treasure ");
-                spendSomeTime("TAKING TREASURE");
+                for (int i = 0; i < 3; i++) {
+                    try {Thread.sleep(300);}
+                    catch (InterruptedException e) {throw new RuntimeException(e);}
+                    String v = lock.take();
+                    valuables.add(v);
+                    log.log(Thread.currentThread().getName()+ " is taking " + v);
 
-                door.putTreasure();
-                spendSomeTime("DELIVERING TREASURE");
+                }
+
+                for (int i = 0; i < 3; i++) {
+                    lock.put(valuables.remove(i));
+                }
+
             }
 
         }
