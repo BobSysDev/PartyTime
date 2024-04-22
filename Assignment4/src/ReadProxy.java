@@ -1,43 +1,23 @@
 import java.util.ArrayList;
 
-public class ReadProxy implements ReadTreasure, WriteTreasure{
+public class ReadProxy implements ReadTreasure{
 
-    private final TreasureRoom treasureRoom;
-    private boolean isReleased;
+    private TreasureRoom treasureRoom;
+    private Guardsman guardsman;
 
-    public ReadProxy(TreasureRoom treasureRoom) {
+
+    public ReadProxy(TreasureRoom treasureRoom, Guardsman guardsman) {
         this.treasureRoom = treasureRoom;
-        this.isReleased = false;
+        this.guardsman = guardsman;
     }
 
-    @Override public void addTreasure(String valuable)
+    @Override public ArrayList<String> getTreasure()
     {
-        if (!isReleased) {
-            this.treasureRoom.addTreasure(valuable);
-        } else {
-            throw new IllegalStateException("Access is denied");
+        if (guardsman.hasAccess(Thread.currentThread())){
+            return treasureRoom.getTreasure();
         }
-    }
-
-    @Override public void addTreasure(ArrayList<String> valuablez)
-    {
-        if (!isReleased) {
-            this.treasureRoom.addTreasure(valuablez);
-        } else {
-            throw new IllegalStateException("Access is denied");
+        else {
+        throw new IllegalStateException("Access is denied after release has been called");
         }
-    }
-
-    @Override
-    public ArrayList<String> getTreasure() {
-        if (!isReleased){
-            return this.treasureRoom.getTreasure();
-        }
-        throw new IllegalStateException("Access is denied");
-    }
-
-    @Override
-    public void release() {
-        this.isReleased = true;
     }
 }
