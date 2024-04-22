@@ -5,4 +5,6 @@ public interface Door {
     WriteTreasure acquireWriteAccess();
     void releaseWriteAccess();
 
+
 }
+
