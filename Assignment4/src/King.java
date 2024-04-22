@@ -56,6 +56,9 @@ public class King implements Runnable
       }catch(InterruptedException e){
         e.printStackTrace();
       }
+
+      door.releaseWriteAccess();
+      lock = null;
     }
   }
 }
