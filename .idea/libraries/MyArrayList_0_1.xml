@@ -6,6 +6,8 @@
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/Downloads/MyArrayList-0.1.jar!/" />
+      <root url="file://$PROJECT_DIR$/Assignment4/Test" />
+      <root url="file://$PROJECT_DIR$/Assignment4/src" />
     </SOURCES>
   </library>
 </component>
