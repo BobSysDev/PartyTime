@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class WriteProxy implements WriteTreasure {
     private final TreasureRoom treasureRoom;
     private boolean isReleased;
@@ -16,7 +18,17 @@ public class WriteProxy implements WriteTreasure {
         }
     }
 
-    public Valuable getTreasure() {
+    @Override
+    public void addTreasure(ArrayList<Valuable> valuablez) {
+        if (!isReleased) {
+            this.treasureRoom.addTreasure(valuablez);
+        } else {
+            throw new IllegalStateException("Access is denied after release has been called");
+        }
+    }
+
+    @Override
+    public ArrayList<Valuable> getTreasure() {
         if (!isReleased) {
             return this.treasureRoom.getTreasure();
         }
