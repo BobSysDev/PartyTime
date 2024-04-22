@@ -1,5 +1,7 @@
+import java.util.ArrayList;
+
 public interface ReadTreasure {
-        Valuable getTreasure();
+        ArrayList<Valuable> getTreasure();
 }
 
 
