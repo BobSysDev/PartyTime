@@ -10,7 +10,7 @@ public class WriteProxy implements WriteTreasure {
     }
 
     @Override
-    public void addTreasure(Valuable valuable) {
+    public void addTreasure(String valuable) {
         if (!isReleased) {
             this.treasureRoom.addTreasure(valuable);
         } else {
@@ -19,7 +19,7 @@ public class WriteProxy implements WriteTreasure {
     }
 
     @Override
-    public void addTreasure(ArrayList<Valuable> valuablez) {
+    public void addTreasure(ArrayList<String> valuablez) {
         if (!isReleased) {
             this.treasureRoom.addTreasure(valuablez);
         } else {
@@ -28,7 +28,7 @@ public class WriteProxy implements WriteTreasure {
     }
 
     @Override
-    public ArrayList<Valuable> getTreasure() {
+    public ArrayList<String> getTreasure() {
         if (!isReleased) {
             return this.treasureRoom.getTreasure();
         }
