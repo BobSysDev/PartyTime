@@ -1,5 +1,5 @@
 public interface DepositLock {
-    void put();
-    void take();
+    void put(String valuable);
+    String take();
     int size();
 }
