@@ -1,8 +1,8 @@
 public interface Door {
 
-    void acquireReadAccess();
+    ReadTreasure acquireReadAccess();
     void releaseReadAccess();
-    void acquireWriteAccess();
+    WriteTreasure acquireWriteAccess();
     void releaseWriteAccess();
 
 }

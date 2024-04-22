@@ -1,35 +1,35 @@
-import javax.swing.*;
-import java.lang.invoke.VarHandle;
 import java.util.ArrayList;
-import java.util.List;
 
 public class TreasureRoom implements WriteTreasure, ReadTreasure{
 
-    private ArrayList<Valuable> valuables;
+    private ArrayList<String> valuables;
 
     public TreasureRoom() {
         this.valuables = new ArrayList<>();
-
-
     }
 
     @Override
-    public synchronized void addTreasure(Valuable valuable) {
+    public synchronized void addTreasure(String valuable) {
         valuables.add(valuable);
     }
 
     @Override
-    public synchronized void addTreasure(ArrayList<Valuable> valuablez) {
+    public synchronized void addTreasure(ArrayList<String> valuablez) {
         valuables.addAll(valuablez);
     }
 
     @Override
-    public synchronized ArrayList<Valuable> getTreasure() {
+    public synchronized ArrayList<String> getTreasure() {
         return valuables;
     }
 
-    public synchronized ArrayList<Valuable> removeTreasure(){
-        ArrayList<Valuable> removed = new ArrayList<>(valuables);
+    @Override
+    public void release() {
+        valuables.clear();
+    }
+
+    public synchronized ArrayList<String> removeTreasure(){
+        ArrayList<String> removed = new ArrayList<>(valuables);
         valuables.clear();
         return removed;
     }
