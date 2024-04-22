@@ -5,7 +5,6 @@ public class ReadProxy implements ReadTreasure{
     private TreasureRoom treasureRoom;
     private Guardsman guardsman;
 
-
     public ReadProxy(TreasureRoom treasureRoom, Guardsman guardsman) {
         this.treasureRoom = treasureRoom;
         this.guardsman = guardsman;

@@ -22,7 +22,7 @@ public class TreasureRoom implements WriteTreasure, ReadTreasure{
     public synchronized ArrayList<String> getTreasure() {
         return valuables;
     }
-    
+
     public synchronized ArrayList<String> removeTreasure(){
         ArrayList<String> removed = new ArrayList<>(valuables);
         valuables.clear();
