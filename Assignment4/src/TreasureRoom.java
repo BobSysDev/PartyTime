@@ -1,7 +1,4 @@
-import javax.swing.*;
-import java.lang.invoke.VarHandle;
 import java.util.ArrayList;
-import java.util.List;
 
 public class TreasureRoom implements WriteTreasure, ReadTreasure{
 
@@ -9,8 +6,6 @@ public class TreasureRoom implements WriteTreasure, ReadTreasure{
 
     public TreasureRoom() {
         this.valuables = new ArrayList<>();
-
-
     }
 
     @Override
